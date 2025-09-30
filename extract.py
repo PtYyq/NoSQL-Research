@@ -1,28 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Reservoir sampling for very large edge lists.
-
-Input formats supported:
-- CSV (no header): each line "follower,followee"
-- SNAP raw .gz: lines "i j" meaning j follows i  (use --snap-flip to output follower=j,followee=i)
-
-Outputs:
-- A sampled edges file (default: edges_sample.csv)
-- Optional rels.csv with header "follower,followee"
-- Optional nodes.csv with header "uid" (unique endpoints from the sampled edges)
-
-Usage examples:
-  # 1) 从 edges_follow.csv 抽 200k 行，输出到 edges_sample.csv
-  #    并另外生成 rels.csv / nodes.csv（AuraDB 直接可用）
-  python sample_edges.py -i edges_follow.csv -k 200000 \
-      -o edges_sample.csv --emit-rels rels.csv --emit-nodes nodes.csv
-
-  # 2) 直接从 twitter-2010.txt.gz（SNAP 原始）抽 200k 行，并“对调方向”
-  python sample_edges.py -i twitter-2010.txt.gz -k 200000 --snap-flip \
-      --emit-rels rels.csv --emit-nodes nodes.csv
-"""
-
 import argparse
 import gzip
 import io
